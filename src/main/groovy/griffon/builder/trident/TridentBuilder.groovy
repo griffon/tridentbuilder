@@ -26,14 +26,11 @@ import org.hybird.animation.trident.triggers.*
  * @author Andres Almiray
  */
 public class TridentBuilder extends FactoryBuilderSupport {
-   public static final String DELEGATE_PROPERTY_OBJECT_ID = "_delegateProperty:id";
-   public static final String DEFAULT_DELEGATE_PROPERTY_OBJECT_ID = "id";
    public static final String DELEGATE_PROPERTY_ACTION_TRIGGER = "_delegateProperty:actionTriggerFor";
    public static final String DEFAULT_DELEGATE_PROPERTY_ACTION_TRIGGER = "actionTriggerFor";
 
    public TridentBuilder( boolean init = true ) {
       super( init )
-      this[DELEGATE_PROPERTY_OBJECT_ID] = DEFAULT_DELEGATE_PROPERTY_OBJECT_ID
       this[DELEGATE_PROPERTY_ACTION_TRIGGER] = DEFAULT_DELEGATE_PROPERTY_ACTION_TRIGGER
    }
 
@@ -77,8 +74,7 @@ public class TridentBuilder extends FactoryBuilderSupport {
 
    // taken from groovy.swing.SwingBuilder
    private static objectIDAttributeDelegate(builder, node, attributes) {
-      def idAttr = builder.getAt(DELEGATE_PROPERTY_OBJECT_ID) ?: DEFAULT_DELEGATE_PROPERTY_OBJECT_ID
-      def theID = attributes.remove(idAttr)
+      def theID = attributes.remove('id')
       if (theID) {
           builder.setVariable(theID, node)
       }
